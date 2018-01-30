@@ -15,6 +15,7 @@ const ButtonShape = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string,
   iconSize: PropTypes.number,
+  buttonElement: PropTypes.element,
   style: ViewPropTypes.style,
   handler: PropTypes.func,
   disabled: PropTypes.bool,
@@ -43,6 +44,7 @@ function getButtonElement(data, style) {
           title={data.title}
           icon={data.icon}
           iconSize={data.iconSize}
+          buttonElement={data.buttonElement}
           style={[data.style, style]}
           tintColor={data.tintColor}
           handler={data.handler}

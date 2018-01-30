@@ -14,6 +14,7 @@ export default function NavbarButton(props) {
     style,
     icon,
     iconSize,
+    buttonElement,
     tintColor,
     title,
     handler,
@@ -21,6 +22,12 @@ export default function NavbarButton(props) {
     accessible,
     accessibilityLabel
   } = props;
+
+  let newButtonElement;
+  if (buttonElement) {
+    newButtonElement = React.cloneElement(buttonElement,
+      {style: {...styles.navBarButtonText, color: tintColor}});
+  }
 
   return (
     <TouchableOpacity
@@ -31,12 +38,16 @@ export default function NavbarButton(props) {
       accessibilityLabel={accessibilityLabel}
     >
       <View style={style}>
-        <Text style={[styles.navBarButtonText, { color: tintColor }]}>
-          { icon &&
-            <Icon name={icon} size={iconSize} color={tintColor} />
-          }
-          {title}
-        </Text>
+        { buttonElement ?
+          newButtonElement
+          :
+          <Text style={[styles.navBarButtonText, { color: tintColor }]}>
+            { icon &&
+              <Icon name={icon} size={iconSize} color={tintColor} />
+            }
+            {title}
+          </Text>
+        }
       </View>
     </TouchableOpacity>
   );
